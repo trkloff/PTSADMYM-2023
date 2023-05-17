@@ -1,6 +1,6 @@
 # Prueba técnica de selección 2023 para Analista de Datos en MYM
 
-## Prediccion de descuentos de una lista de repuestos de suspensión del modelo FM-FMX de la marca VOLVO a partir de su precio origen.
+## Comparativo de descuentos de una lista de repuestos de suspensión del modelo FM-FMX de la marca VOLVO a partir de su precio origen.
 Debes estimar el descuento en dias, meses o semestres (criterio del postulante) de una lista obtenida de respuestos a partir de su precio origen(sin descuento). Someterás tu respuesta en una tabla de 5 columnas 
 donde la columna se conforma por ID, DESCRIPCIÓN CODIGO DEL REPUESTO, PRECIO ESTIMADO, Precio BASE. Esperamos ver tus avances graduales en ciclos cortos. Esta prueba támbien se considera que tantos pull requests realices por 
 cada avance pequeño que realices(menos de 100 lines de código). Por lo que te proponemos:
