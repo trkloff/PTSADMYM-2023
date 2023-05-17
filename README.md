@@ -44,7 +44,7 @@ distancia. Para eso usaremos los siguientes rubros:
 ## Herramientas
 1. La fuente donde se realizará la extracción de datos es: https://volvorepuestos.com.pe/
 2. Puedes usar Nodejs o Python 
-3. Puedes usar cualquier librería para nodejs se recomienda puppeteer, cryto, delay, Guarda tu respuesta <TU_NOMBRE>_submission.csv en la carpeta pollos_petrel/. En el Makefile de este repo, agrega al phony submissions la ruta completa de tu respuesta: pollos_petrel/<TU_NOMBRE>_submission.csvetc.
+3. Puedes usar cualquier librería para nodejs se recomienda puppeteer, cryto, delay.
 4. Puedes usar cualquier libería para Python se recomienda Jupiter Notebook, Selenium, etc.
 5. Para transformar los datos puedes usar: XML, JSON.
 6. Para almacenar los datos puedes usar cualquier motor de base de datos(mysql,sql,postgreSQL,db2,oracle, etc).
