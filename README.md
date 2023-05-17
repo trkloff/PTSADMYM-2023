@@ -65,9 +65,6 @@ En el repositorio se espera lo siguiente:
 - repuesto.csv (TABLA del result final)
 - REPUESTOS.json (LOS OBJETOS TRANSFORMADOS EN FORMATO JSON O XML).
 
-Te recomendamos que sometas al menos dos modelos. El mejor modelo es el que obtenga el menor error
-absoluto medio ([MAE](https://en.wikipedia.org/wiki/Mean_absolute_error)). Puedes ver los resultados
-de tu modelo en GitHub Actions en la sección _Evaluate a directory_.
 
 ## Referencias
 
