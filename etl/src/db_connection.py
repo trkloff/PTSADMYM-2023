@@ -4,19 +4,19 @@ from sshtunnel import SSHTunnelForwarder
 def get_conn():
     try:
         server = SSHTunnelForwarder(
-                ('51.161.9.38', 22),
+                ('hostname o ip', 22),
                 #ssh_private_key="</path/to/private/ssh/key>",
                 ### in my case, I used a password instead of a private key
-                ssh_username="debian",
-                ssh_password="SmFy3u7SDPJr", 
+                ssh_username="user",
+                ssh_password="password", 
                 remote_bind_address=('localhost', 5432))
         server.start()
         print ("server connected")
 
         params = {
-                'database': 'mym',
-                'user': 'postgres',
-                'password': 'securepassword',
+                'database': 'name_database',
+                'user': 'user',
+                'password': 'password',
                 'host': 'localhost',
                 'port': server.local_bind_port
                 }

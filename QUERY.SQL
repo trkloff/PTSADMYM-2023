@@ -10,10 +10,10 @@ CREATE TABLE repuesto(
 	PRECIO_BASE decimal(10,2)
 );
 
---recuperar el precio mínimo de PRECIO_BASE
+--recuperar el precio mínimo
 SELECT MIN(precio_base) as precio_min  FROM repuesto;
 
---recuperar el precio máximo de PRECIO_BASE
+--recuperar el precio máximo
 SELECT MAX(precio_base) as precio_max  FROM repuesto;
 
 --recuperar un registro por nombre

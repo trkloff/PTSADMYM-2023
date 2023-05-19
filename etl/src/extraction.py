@@ -54,6 +54,14 @@ dict_resp = {'ID':1,'DESCRIPCION':list_desc,'CODIGO_REPUESTO':list_cod,'PRECIO_E
 df_resp = pd.DataFrame(dict_resp)
 df_resp['ID'] = df_resp.index + 1
 
+#agregar columna PRECIO_FINAL
+df_resp['PRECIO_FINAL'] = df_resp.apply(
+    lambda row: row.PRECIO_ESTIMADO if row.PRECIO_ESTIMADO > 0 else row.PRECIO_BASE, axis=1)
+
+#estimar descuento (%)
+df_resp['DESCUENTO'] = 1 - (df_resp['PRECIO_FINAL']/df_resp['PRECIO_BASE'])
+print(df_resp)
+
 #grabar archivo con extención .csv
 df_resp.to_csv('repuesto.csv',index=False,header=True)
 
@@ -87,5 +95,6 @@ def insertIntoTable(df, table):
 
 #invocamos a la funcion pasando los parámetros(dataframe,nombre de tabla)
 insertIntoTable(df_resp,'repuesto')
+
 
 
