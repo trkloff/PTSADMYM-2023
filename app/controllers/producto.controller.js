@@ -36,7 +36,65 @@ exports.findOne = (req, res) => {
 
  
  
+// metodo encargado de realizar el scraping
+exports.scraping = (req, res) => {
+  console.log("inicialdo el scraping")
 
+  scrape().then((value) => {
+    console.log('Collection length: ' + value.length);
+    
+ 
+    res.json({ message: "scaping completado." });
+
+  });
+};
+
+let scrape = async () => {
+  const browser = await puppeteer.launch({ headless: true });
+  const page = await browser.newPage();
+
+  await page.goto('https://volvorepuestos.com.pe/repuestos-camiones-volvo/fm-fmx.html',{timeout: 900000})
+
+  var results = []; // variable para mantener la colección de todos los títulos y precios de los libros
+  // esta es la última página del catálogo codificada osea se iterara de la pagina 1 a la 5 con fines de pruebas
+  var lastPageNumber = 50; 
+  //selector de pagina siguiente
+  var selector_pag_siguiente = '#layer-product-list > div:nth-child(1) > div.pages > ul > li.item.pages-item-next > a';
+  // bucle simple definido para iterar sobre el número de páginas del catálogo
+  for (let index = 0; index < lastPageNumber; index++) {
+       
+      new Promise(r => setTimeout(r, 1000))
+      // llame y espere extraídaEvaluateCall y concatene los resultados de cada iteración.
+      //retornara el texto obtenido de cada pagina iterada
+      results = results.concat(await extractedEvaluateCall(page));
+    
+      // aquí es donde se hizo clic en el siguiente botón de la página para saltar a otra página
+      if (index != lastPageNumber - 1) {
+          //botón siguiente en la última página
+          if (await page.$(selector_pag_siguiente) !== null) await page.click(selector_pag_siguiente);
+          else console.log('se acabaron las paginas');
+          
+      }
+  }
+
+  browser.close();
+  return results;
+};
+
+/**
+* metodo encargado de realizar scraping
+*/
+async function extractedEvaluateCall(page) {
+  //identificar el elemento al que se le desea hacer el scraping
+  const f = await page.$("#layer-product-list > div.products.wrapper.grid.columns4.products-grid > ol")
+  //obtener el scraing de todos los producto de la pagina actual
+  const texto = await (await f.getProperty('innerText')).jsonValue()
+
+  return texto;
+
+}
+
+ 
 
 
 
