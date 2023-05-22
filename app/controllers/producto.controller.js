@@ -43,7 +43,11 @@ exports.scraping = (req, res) => {
   scrape().then((value) => {
     console.log('Collection length: ' + value.length);
     
- 
+    value.map(texto =>{
+  
+        agregarProductos(texto)
+    })
+  
     res.json({ message: "scaping completado." });
 
   });
@@ -94,7 +98,61 @@ async function extractedEvaluateCall(page) {
 
 }
 
+/**
+* metodo encargado de almacenar cada producto al json global 
+* @param {*} texto 
+*/
+function agregarProductos(texto) {
+  
+  // separar todo el texto obtenido por productos
+  // en este caso usaremos el texto " Añadir al carrito" para identificar el fin de cada producto
+  let separarText = texto.split(' Añadir al carrito')
  
+  //iterar todos los productos obtenidos
+  separarText.map(productoText => {
+      if (productoText.length  <= 1) {
+          return
+      }
+      //convertir texto a arreglo
+      let separarProducto= productoText.split('\n\n',-1)
+      //separar el texto para obtener el codigo del producto
+      let separarCodigo = separarProducto[1].split('\n')
+      //separar precio para saber si existe un producto con descuento
+      let separarPrecio = separarProducto[2].split('\nPrecio especial\n')
+
+      //obtener la descripcion del producto
+      let DESCRIPCION = separarProducto[0].replace('\n','')
+      //obtener el codigo del producto
+      let CODIGO_DEL_REPUESTO =  separarCodigo[1]
+      //obtener el precio estimado del producto
+      let PRECIO_ESTIMADO =  separarPrecio[separarPrecio.length - 1].replace('\n','')
+      //obtener el precio anterior del producto en el caso de q no exista un descuento el PRECIO_ANTERIOR = PRECIO_ESTIMADO
+      let PRECIO_ANTERIOR =  separarPrecio[0].replace('\n','')
+
+      //agrerar el producto a la base de datos
+      const producto = new Producto({
+        DESCRIPCION,
+        CODIGO_DEL_REPUESTO,
+        PRECIO_ANTERIOR,
+        PRECIO_ESTIMADO,
+      });
+
+      // Save Tutorial in the database
+      Producto.create(producto, (err, data) => {
+        if (err){
+
+          respuesta = {
+            message:
+              err.message || "Ocurrió algún error al crear el Producto."
+          };
+          console.log(respuesta);
+        }
+        //else respuesta = data;
+      });
+      })
+
+      
+}
 
 
 
