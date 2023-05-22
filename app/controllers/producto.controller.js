@@ -125,9 +125,9 @@ function agregarProductos(texto) {
       //obtener el codigo del producto
       let CODIGO_DEL_REPUESTO =  separarCodigo[1]
       //obtener el precio estimado del producto
-      let PRECIO_ESTIMADO =  separarPrecio[separarPrecio.length - 1].replace('\n','')
+      let PRECIO_ESTIMADO =  separarPrecio[separarPrecio.length - 1].replace(/[$\n, ]/g, '')
       //obtener el precio anterior del producto en el caso de q no exista un descuento el PRECIO_ANTERIOR = PRECIO_ESTIMADO
-      let PRECIO_ANTERIOR =  separarPrecio[0].replace('\n','')
+      let PRECIO_ANTERIOR =  separarPrecio[0].replace(/[$\n, ]/g, '')
 
       //agrerar el producto a la base de datos
       const producto = new Producto({
