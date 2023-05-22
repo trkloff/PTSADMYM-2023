@@ -74,11 +74,4 @@ En el repositorio se espera lo siguiente:
 - [The pull request author’s guide to getting through code review](https://google.github.io/eng-practices/review/developer/)
 - [_Forkeado_ de un repositorio](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo)
 
-##IMPLEMENTACIÓN
-A continuación se lista las tecnologías seleccionadas a usar para la implementación del proyecto.
-1.- Motor de base de datos: postgreSQL 15
-2.- lenguaje de programación: Python  3.11.3, con las siguientes librerias generada en el archivo requirements.txt
-3.- Hoja de cálculo
-
-
 
