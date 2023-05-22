@@ -23,8 +23,8 @@ Producto.create = (newProducto, result) => {
 };
 
 //metodo encargado de listar un producto por codigo del mismo
-Producto.findById = (id, result) => {
-  sql.query(`SELECT * FROM productos WHERE CODIGO_DEL_REPUESTO like '%${id}%'`, (err, res) => {
+Producto.findById = (data, result) => {
+  sql.query(`SELECT * FROM productos WHERE ${data.columna} like '%${data.id}%'`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

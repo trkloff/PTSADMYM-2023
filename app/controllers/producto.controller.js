@@ -19,15 +19,15 @@ exports.index = (req, res) => {
 
 // metodo encargado de retornar el producto por codigo de producto
 exports.findOne = (req, res) => {
-  Producto.findById(req.params.id, (err, data) => {
+  Producto.findById({id:req.params.id,columna:req.params.columna}, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Producto no encontrado con el codigo ${req.params.id}.`
+          message: `Producto no encontrado con el dato ${req.params.id} filtrado por la columna ${req.params.columna}.`
         });
       } else {
         res.status(500).send({
-          message: "Error al recuperar el producto con codigo " + req.params.id
+          message: `Error al recuperar el producto con dato ${req.params.id} filtrado por la columna ${req.params.columna}.`
         });
       }
     } else res.send(data);
